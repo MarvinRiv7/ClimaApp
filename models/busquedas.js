@@ -23,13 +23,17 @@ class Busquedas {
         params: this.paramsMapTiler,
       });
       const resp = await intance.get();
+      return resp.data.features.map(lugar => ({
+        id: lugar.id,
+        nombre: lugar.place_name,
+        lng: lugar.center[0],
+        lat: lugar.center[1],
+      }))
 
-      //const resp = await axios.get("https://api.maptiler.com/geocoding/Madrid.json?key=5Nxu28vUsEx1WX4BkYBz&language=es&limit=5");
-      console.log(resp.data);
-      return [];
     } catch (error) {
       return [];
     }
+
   }
 }
 
